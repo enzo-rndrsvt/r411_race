@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">R411 Race</string>
+
+    <string name="car_description">Voiture principale</string>
+    <string name="credits">Projet réalisé par Enzo RYNDERS--VITU lors d\'un projet évalué à l\'IUT de Laval</string>
+    <string name="settings">Paramètres</string>
+    <string name="start_game">Lancer la partie</string>
+    <string name="titre">Jeu de course</string>
+    <string name="menuCarDesc">Image de voiture</string>
+    <string name="game_over">GAME OVER</string>
+    <string name="restart">Relancer</string>
+    <string name="gobackmenu">Menu principal</string>
+</resources>
