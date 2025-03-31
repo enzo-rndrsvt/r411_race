@@ -9,7 +9,8 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.preference.PreferenceManager
+import android.app.AlertDialog
+import android.content.Intent
 
 class MainActivity : AppCompatActivity() {
     lateinit var capteurManager: CapteurManager
@@ -17,10 +18,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var scoreManager: ScoreManager
     lateinit var ivCar: ImageView
     lateinit var mainLayout: ConstraintLayout
+    lateinit var btnClose: ImageView
 
     private var engineMediaPlayer: MediaPlayer? = null
 
     private lateinit var preferences: SharedPreferences
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +33,13 @@ class MainActivity : AppCompatActivity() {
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        // Initialiser le bouton de fermeture
+        btnClose = findViewById(R.id.btnClose)
+        btnClose.setOnClickListener {
+            showCloseConfirmationDialog()
+        }
+
 
         // Initialiser les vues et les gestionnaires
         mainLayout = findViewById(R.id.main)
@@ -53,6 +63,27 @@ class MainActivity : AppCompatActivity() {
 
         // Démarrer le comptage du score
         scoreManager.startScoring()
+    }
+
+    // Méthode pour afficher une boîte de dialogue de confirmation
+
+    private fun showCloseConfirmationDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Quitter le jeu")
+            .setMessage("Voulez-vous vraiment quitter ? Votre score ne sera pas sauvegardé.")
+            .setPositiveButton("Oui") { _, _ ->
+                // Arrêter tous les processus sans sauvegarder
+                enemyCarManager.stop()
+                scoreManager.stopScoring()
+                capteurManager.stop()
+
+                // Retourner à l'écran d'accueil
+                val intent = Intent(this, AccueilActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            .setNegativeButton("Non", null)
+            .show()
     }
 
     override fun onDestroy() {

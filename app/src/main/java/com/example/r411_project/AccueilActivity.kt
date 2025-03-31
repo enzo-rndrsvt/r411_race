@@ -23,7 +23,7 @@ class AccueilActivity : AppCompatActivity() {
         setContentView(R.layout.activity_accueil)
 
         // Initialiser les préférences partagées pour sauvegarder le meilleur score
-        preferences = getSharedPreferences("GamePrefs", Context.MODE_PRIVATE)
+        preferences = getSharedPreferences("Game", Context.MODE_PRIVATE)
 
         // Bouton pour commencer le jeu
         btnStartGame = findViewById(R.id.btnStartGame)

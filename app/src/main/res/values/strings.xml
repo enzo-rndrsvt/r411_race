@@ -10,4 +10,8 @@
     <string name="game_over">GAME OVER</string>
     <string name="restart">Relancer</string>
     <string name="gobackmenu">Menu principal</string>
+    <string name="sound">Son</string>
+    <string name="engine_sound">Son du moteur</string>
+    <string name="crash_sound">Son de collision</string>
+    <string name="save">Enregistrer</string>
 </resources>
